@@ -1,11 +1,11 @@
 import sys
 keyword = ["what", "are", "you", "have", "talking"]
 def search (keyword):
-
     out = open('output.txt', 'w')
 
     #Search through every inputted pdf
     for pdf_loop in range (1,len(sys.argv)):
+        print pdf_loop
         f = open(sys.argv[pdf_loop], 'r')
         text = f.read().lower().split()
 
@@ -38,8 +38,6 @@ def search (keyword):
                     else:
                         out.write("\"",)
                         for j in range (-15,15):
-                            if j == -5 or j == 5:
-                                out.write("\n")
                             if text[where_appear[i] + j] == keyword[keyword_loop]:
                                 out.write(keyword[keyword_loop].upper() + " ")
                             else:
