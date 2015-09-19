@@ -1,13 +1,23 @@
 import sys
-keyword = ["what", "are", "you", "have", "talking"]
+keywords = []
+keyword = ""
+
+while True:
+	keyword = raw_input("Enter a single keyword and push \"Enter\". If you are done, write \"quit\" \n")
+	if keyword == "quit" :
+		break
+	else :
+		keywords.append(keyword)
+
 def search (keyword):
     out = open('output.txt', 'w')
 
     #Search through every inputted pdf
     for pdf_loop in range (1,len(sys.argv)):
-        print pdf_loop
         f = open(sys.argv[pdf_loop], 'r')
         text = f.read().lower().split()
+        if len(text) < 100:
+            out.write("ERROR: \nFile \"" + sys.argv[pdf_loop] + "\" is either suspiciously brief or cannot be read! \nPlease also check this one manually.\n")
 
         #Search through every inputted keyword
         for keyword_loop in range (0, len(keyword)):
@@ -25,24 +35,33 @@ def search (keyword):
                 out.write("Keyword " + keyword[keyword_loop].upper() + " found in file: " + sys.argv[pdf_loop] + " " + str(counter) + " times \n \n")
                 #Start creating summary
                 for i in range(0,len(where_appear)):
-                    if where_appear[i] < 25:
-                        out.write("\"",)
-                        for j in range (0,50):
-                            out.write(text[j] + " ",)
-                        out.write("\"",)
-                    elif where_appear[i] > len(text)-25:
-                        out.write("\"",)
-                        for j in range (len(text) - 50, len(text)):
-                            out.write(text[j] + " ",)
-                        out.write("\"",)
-                    else:
-                        out.write("\"",)
-                        for j in range (-15,15):
+                    try:
+                        if where_appear[i] < 16:
+                            out.write("\"",)
+                            for j in range (0,30):
+                                out.write(text[j] + " ",)
+                            out.write("\"",)
+                        elif where_appear[i] > len(text)-15:
+                            out.write("\"",)
+                            for j in range (len(text) - 30, len(text)):
+                                out.write(text[j] + " ",)
+                            out.write("\"",)
+                        else:
+                            out.write("\"",)
+                            for j in range (-15,15):
+                                if text[where_appear[i] + j] == keyword[keyword_loop]:
+                                    out.write(keyword[keyword_loop].upper() + " ")
+                                else:
+                                    out.write(text[where_appear[i] + j] + " ",)
+                            out.write("\"",)
+                        out.write("\n" + "\n")
+                    except IndexError:
+                        for j in range (0,len(text)):
                             if text[where_appear[i] + j] == keyword[keyword_loop]:
                                 out.write(keyword[keyword_loop].upper() + " ")
                             else:
-                                out.write(text[where_appear[i] + j] + " ",)
+                                out.write(text[where_appear[j]] + " ",)
                         out.write("\"",)
                     out.write("\n" + "\n")
-                appear = False
-search(keyword)
+                    appear = False
+search(keywords)
