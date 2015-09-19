@@ -1,8 +1,5 @@
 import sys
-
-#keyword = input("Enter your keyword: ")
-
-keyword = ["what", "are", "you", "talking", "about", "have"]
+keyword = ["what", "are", "you", "have", "talking"]
 def search (keyword):
     appear = False
 
@@ -18,14 +15,16 @@ def search (keyword):
         for keyword_loop in range (0, len(keyword)):
             counter = 0
 
+            #Search through individual pdf's text
             for i in range(0, len(text)):
                 if text[i] == keyword[keyword_loop].lower():
                     counter = counter + 1
                     where_appear.append(i)
 
-            out.write(sys.argv[pdf_loop] + "\n")
-            out.write(keyword[keyword_loop] + "\n")
-            out.write(str(counter) + "\n")
+            out.write("Keywords found in file: " + sys.argv[pdf_loop] + "\n")
+            out.write("Hits encountered for " +keyword[keyword_loop] + ": " + str(counter) + "\n")
+
+            #Start creating summary
             for i in range(0,len(where_appear)):
                 if where_appear[i] < 25:
                     for j in range (0,50):
