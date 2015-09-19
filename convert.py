@@ -26,9 +26,10 @@ def search (keyword):
             for i in range(0,len(where_appear)):
                 for j in range (-25,25):
                     if text[where_appear[i] + j] == keyword:
-                        out.write(keyword.upper())
+                        out.write(keyword.upper() + " ")
                     else:
-                        out.write(text[where_appear[i] + j] ,)
+                        out.write(text[where_appear[i] + j] + " ",)
+                out.write("\n")
                 out.write("\n")
 
 
