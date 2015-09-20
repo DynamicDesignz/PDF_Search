@@ -19,6 +19,3 @@ will write the plain text version of the file to a text file "output.txt" in the
 ## Acknowledgements
 
 This is fork of gangopad/PDFtoText. Check out the original project here: https://github.com/gangopad/PDFtoText
-
-
-
