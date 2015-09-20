@@ -9,6 +9,7 @@ counterDEL=1
 STR=""
 STR_noES=""
 emptyspace=" "
+pdfname=""
 for file in $PWD/PDFs/*.pdf
 do
   echo $file
@@ -21,6 +22,7 @@ do
 done
 for file in $PWD/*.txt
 do
+  #echo "$file"
   extension=.txt
   name="$counterTXT$extension"
   STR_noES="$STR$name"
@@ -29,4 +31,4 @@ do
 done
 python convert.py $STR_noES
 #python make_report.py
-rm *.txt
+#rm *.txt
