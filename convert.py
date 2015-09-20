@@ -1,6 +1,5 @@
 import sys
-import glob
-import os
+
 temp_keyword = ""
 
 enter_keyword = raw_input("Enter your keywords: ")
