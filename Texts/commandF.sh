@@ -18,7 +18,6 @@ do
  python pdf2txt.py "$file" >> $outfile
  counterPDF=$((counterPDF+1))
 done
-
 for file in /Users/Motoki/Desktop/git/PDFtoText/Texts/*.txt
 do
   extension=.txt
