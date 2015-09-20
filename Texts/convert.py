@@ -1,17 +1,19 @@
 import sys
-keywords = []
-keyword = ""
+temp_keyword = ""
 
-while True:
-	keyword = raw_input("Enter a single keyword and push \"Enter\". If you are done, write \"quit\" \n")
-	if keyword == "quit" :
-		break
-	else :
-		keywords.append(keyword)
+enter_keyword = raw_input("Enter your keywords: ")
+temp_keyword = temp_keyword + enter_keyword + " "
+keyword = temp_keyword.split()
+
+#while True:
+#	keyword = raw_input("Enter a single keyword and push \"Enter\". If you are done, write \"quit\" \n")
+#	if keyword == "quit" :
+#		break
+#	else :
+#		keywords.append(keyword)
 
 def search (keyword):
     out = open('output.txt', 'w')
-
     #Search through every inputted pdf
     for pdf_loop in range (1,len(sys.argv)):
         f = open(sys.argv[pdf_loop], 'r')
@@ -64,4 +66,4 @@ def search (keyword):
                         out.write("\"",)
                     out.write("\n" + "\n")
                     appear = False
-search(keywords)
+search(keyword)
