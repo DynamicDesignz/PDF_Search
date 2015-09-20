@@ -12,23 +12,27 @@ emptyspace=" "
 pdfname=""
 for file in $PWD/PDFs/*.pdf
 do
-  echo $file
-  extension=.txt
   path=$PWD/
-
- outfile=$path$counterPDF$extension
- python pdf2txt.py "$file" >> $outfile
- counterPDF=$((counterPDF+1))
+  pdfname="${file##*/}"
+  echo "converting file "$pdfname
+  extension=.txt
+  outfile=$path$pdfname$extension
+  python pdf2txt.py "$file" >> "$outfile"
+  counterPDF=$((counterPDF+1))
 done
 for file in $PWD/*.txt
 do
-  #echo "$file"
-  extension=.txt
-  name="$counterTXT$extension"
+#  extension=.txt
+#  path=$PWD/
+  pdfname="${file##*/}"
+  echo "searching through "$pdfname
+
+  name="$pdfname"
   STR_noES="$STR$name"
   STR="$STR_noES$emptyspace"
   counterTXT=$((counterTXT+1))
 done
+echo $STR_noES
 python convert.py $STR_noES
 #python make_report.py
 #rm *.txt
