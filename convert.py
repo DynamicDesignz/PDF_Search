@@ -36,8 +36,9 @@ def search (keyword):
                     counter = counter + 1
                     where_appear.append(i)
                     appear = True
+            out.write("Keyword " + keyword[keyword_loop].upper() + " found in file: " + sys.argv[pdf_loop] + " " + str(counter) + " times \n \n")
             if appear == True:
-                out.write("Keyword " + keyword[keyword_loop].upper() + " found in file: " + sys.argv[pdf_loop] + " " + str(counter) + " times \n \n")
+                #out.write("Keyword " + keyword[keyword_loop].upper() + " found in file: " + sys.argv[pdf_loop] + " " + str(counter) + " times \n \n")
                 #Start creating summary
                 for i in range(0,len(where_appear)):
                     try:
