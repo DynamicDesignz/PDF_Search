@@ -5,6 +5,7 @@ enter_keyword = raw_input("Enter your keywords: ")
 temp_keyword = temp_keyword + enter_keyword + " "
 keyword = temp_keyword.split()
 
+
 #while True:
 #	keyword = raw_input("Enter a single keyword and push \"Enter\". If you are done, write \"quit\" \n")
 #	if keyword == "quit" :
