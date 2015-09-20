@@ -22,10 +22,15 @@ report.write("Report generaged by: PDF Search\n")
 report.write("##Search Summary\n")
 string_of_txt_report = txt_report.read()
 summary_list = re.findall(r'Keyword (\w+) found in file: (\S+) (\d+) times', string_of_txt_report)
+
 keywords = Set([])
 for Tuple in summary_list:
 	keywords.add(Tuple[0])
-report.write("Keywords: "+""			# CONTINUE HERE <<<<<<<<<<<<<<<< 
+
+report.write("Search Keywords: ")
+for element in keywords:
+	report.write("*"+element+"* ")
+report.write("\n")
 
 # Fine details
 report.write("##Findings\n")
