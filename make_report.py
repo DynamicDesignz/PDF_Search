@@ -51,8 +51,8 @@ for filename in filenames:
 		for Tuple in summary_list:
 			if Tuple[0] == keyword and Tuple[1] == filename:
 				report.write("Keyword *"+keyword+"* found "+str(Tuple[2])+" times: \n")
-			findings = re.findall()
-
+				findings = re.findall(str(Tuple[2])+r' times: (.*?) Keyword', string_of_txt_report, re.DOTALL)
+				print findings
 
 
 report.close()
