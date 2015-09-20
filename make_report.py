@@ -28,13 +28,32 @@ keywords = Set([])
 for Tuple in summary_list:
 	keywords.add(Tuple[0])
 
-report.write("Search Keywords: ")
-for element in keywords:
-	report.write("*"+element+"* ")
+report.write("Search Keywords: \n\n")
+for keyword in keywords:
+	report.write("- *"+keyword+"* \n")
+report.write("\n")
+
+filenames = Set([])
+for Tuple in summary_list:
+	filenames.add(Tuple[1])
+
+report.write("Files searched: \n")
+for filename in filenames:
+	report.write("- *"+filename+"*\n")
 report.write("\n")
 
 # Fine details
 report.write("##Findings\n")
+
+for filename in filenames:
+	report.write("### Hits in "+filename+"\n")
+	for keyword in keywords:
+		for Tuple in summary_list:
+			if Tuple[0] == keyword and Tuple[1] == filename:
+				report.write("Keyword *"+keyword+"* found "+str(Tuple[2])+" times: \n")
+			findings = re.findall()
+
+
 
 report.close()
 txt_report.close()
