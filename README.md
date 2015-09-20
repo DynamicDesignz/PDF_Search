@@ -3,12 +3,10 @@
 Welcome to commandF, a search program for multiple PDF files.
 To run, enter the following into your command line:
 
-## bash commandF.sh
-
-
-```bash    
-    $python pdf2txt.py "mypdf.pdf"
+``` bash 
+    bash commandF.sh
 ```
+
     
 will return the file to the screen and
 
