@@ -3,8 +3,9 @@
 	(1) Modify the source code to markdown to make headings and such
 	(2) Convert the markdown to
 """
-#import os, sys, inspect
-#cmd_markdown = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe() ))[0],"deps/markdown/")))
+import os, sys, inspect
+cmd_markdown = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe() ))[0],"deps/markdown/")))
+sys.path.append(cmd_markdown)
 import markdown 		# Convert markdown to html
 import time				# Print the date on the report
 import re				# Regular expressions

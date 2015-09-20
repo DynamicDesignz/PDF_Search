@@ -22,8 +22,6 @@ do
 done
 for file in $PWD/*.txt
 do
-#  extension=.txt
-#  path=$PWD/
   pdfname="${file##*/}"
   echo "searching through "$pdfname
 
@@ -34,5 +32,5 @@ do
 done
 echo $STR_noES
 python convert.py $STR_noES
-#python make_report.py
-#rm *.txt
+python make_report.py
+rm *.txt
