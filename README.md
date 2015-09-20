@@ -1,10 +1,10 @@
 # PDF Search
 
-Welcome to PDF Search. This repository as tools perform automated searchs of large PDF documents. 
+Welcome to commandF, a search program for multiple PDF files.
+To run, enter the following into your command line:
 
-## pdf2txt.py
+## bash commandF.sh
 
-pdf2txt.py converts pdf documents to plain text. Given a pdf in "mypdf.pdf" it will be converted to  plain text in the standard output. For example:
 
 ```bash    
     $python pdf2txt.py "mypdf.pdf"
