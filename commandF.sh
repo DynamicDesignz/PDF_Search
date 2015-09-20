@@ -12,10 +12,11 @@ emptyspace=" "
 pdfname=""
 for file in $PWD/PDFs/*.pdf
 do
-  echo $file
+  #echo $file
   extension=.txt
   path=$PWD/
-
+filename="%%$file.pdf"
+echo $filename
  outfile=$path$counterPDF$extension
  python pdf2txt.py "$file" >> $outfile
  counterPDF=$((counterPDF+1))
