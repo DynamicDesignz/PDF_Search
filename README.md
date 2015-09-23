@@ -1,14 +1,12 @@
 # PDF Search
 
-Welcome to PDF Search. This repository as tools perform automated searchs of large PDF documents. 
+Welcome to commandF, a search program for multiple PDF files.
+To run, enter the following into your command line:
 
-## pdf2txt.py
-
-pdf2txt.py converts pdf documents to plain text. Given a pdf in "mypdf.pdf" it will be converted to  plain text in the standard output. For example:
-
-```bash    
-    $python pdf2txt.py "mypdf.pdf"
+``` bash 
+    bash commandF.sh
 ```
+
     
 will return the file to the screen and
 
@@ -21,6 +19,3 @@ will write the plain text version of the file to a text file "output.txt" in the
 ## Acknowledgements
 
 This is fork of gangopad/PDFtoText. Check out the original project here: https://github.com/gangopad/PDFtoText
-
-
-

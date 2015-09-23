@@ -33,4 +33,4 @@ done
 echo $STR_noES
 python convert.py $STR_noES
 python make_report.py
-rm *.txt
+#rm *.txt
