@@ -12,8 +12,8 @@ import time				# Print the date on the report
 import re				# Regular expressions
 from sets import Set	# We'll need the 'Set' object
 
-txt_report = open("output.txt", 'r')						# .txt version of the report from convert.py
-report = open("report.md", 'w')								# .md version of the report to be written
+txt_report = open("./output.txt", 'r')							# .txt version of the report from convert.py
+report = open("./report.md", 'w')								# .md version of the report to be written
 
 # Title and Top Matter
 report.write("#Search Report\n")							# Title
@@ -22,12 +22,12 @@ report.write("Report generated: " + date_string + "\n")		# Write the Date genera
 report.write("Report generaged by: PDF Search\n")			# Software name
 
 # Summary of the Search
-report.write("##Search Summary\n")							
+report.write("##Search Summary\n")
 string_of_txt_report = txt_report.read()					# Convert report to a single string for regex work
 txt_report.close()
 summary_list = re.findall(r'Keyword (\w+) found in file: (\S+) (\d+) times', string_of_txt_report)	# Find tuples of (Keyword, filename, hits)
 
-keywords = Set([])						# Make a set of keyowords 
+keywords = Set([])						# Make a set of keyowords
 for Tuple in summary_list:
 	keywords.add(Tuple[0])
 
@@ -59,7 +59,7 @@ for line in txt_report:					# Structure the report as list of keyword hits start
 		else:
 			section.append(line)
 	else:
-		section.append(line)			
+		section.append(line)
 else:
 	result.append(section)
 txt_report.close()
@@ -75,10 +75,6 @@ for filename in filenames:				# For each pdf filename:
 report.close()
 
 # Convert to html
-mdreport = open("report.md", 'r')
-markdown.markdownFromFile("report.md", "report.html")
+mdreport = open("./report.md", 'r')
+markdown.markdownFromFile("./report.md", "report.html")
 mdreport.close()
-
-
-
-
