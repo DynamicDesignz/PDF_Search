@@ -1,0 +1,7 @@
+ Welcome to the PDF folder
+==========================
+
+Add the PDF documents that
+you would like to search 
+here so that PDF_Search 
+can find them.
