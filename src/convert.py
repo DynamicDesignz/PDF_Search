@@ -59,7 +59,7 @@ def search (keyword):
                                 else:
                                     out.write(text[where_appear[i] + j] + " ",)
                             out.write("\"",)
-                        out.write("\n" + "\n")
+                        out.write("\n")
                     except IndexError:
                         for j in range (0,len(text)):
                             if text[where_appear[i] + j] == keyword[keyword_loop]:
@@ -67,6 +67,6 @@ def search (keyword):
                             else:
                                 out.write(text[where_appear[j]] + " ",)
                         out.write("\"",)
-                    out.write("\n" + "\n")
+                    out.write("\n")
                     appear = False
 search(keyword)

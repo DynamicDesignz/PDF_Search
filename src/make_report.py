@@ -11,50 +11,66 @@ import time				# Print the date on the report
 import re				# Regular expressions
 from sets import Set	# We'll need the 'Set' object
 
-txt_report = open("output.txt", 'r')
-report = open("report.md", 'w')
+txt_report = open("output.txt", 'r')			# .txt version of the report from convert.py
+report = open("report.md", 'w')					# .md version of the report to be written
 
 # Title and Top Matter
-report.write("#Search Report\n")
-date_string = time.strftime("%d/%m/%Y")
-report.write("Report generated: " + date_string + "\n")
-report.write("Report generaged by: PDF Search\n")
+report.write("#Search Report\n")							# Title
+date_string = time.strftime("%d/%m/%Y")						# Date
+report.write("Report generated: " + date_string + "\n")		# Write the Date generated
+report.write("Report generaged by: PDF Search\n")			# Software name
 
 # Summary of the Search
-report.write("##Search Summary\n")
-string_of_txt_report = txt_report.read()
-summary_list = re.findall(r'Keyword (\w+) found in file: (\S+) (\d+) times', string_of_txt_report)
+report.write("##Search Summary\n")							
+string_of_txt_report = txt_report.read()					# Convert report to a single string for regex work
+txt_report.close()
+summary_list = re.findall(r'Keyword (\w+) found in file: (\S+) (\d+) times', string_of_txt_report)	# Find tuples of (Keyword, filename, hits)
 
-keywords = Set([])
+keywords = Set([])						# Make a set of keyowords 
 for Tuple in summary_list:
 	keywords.add(Tuple[0])
 
-report.write("Search Keywords: \n\n")
+report.write("Search Keywords: \n\n")	# Print out the keywords
 for keyword in keywords:
 	report.write("- *"+keyword+"* \n")
 report.write("\n")
 
-filenames = Set([])
+filenames = Set([])						# Make a set of filenames
 for Tuple in summary_list:
 	filenames.add(Tuple[1])
 
-report.write("Files searched: \n")
+report.write("Files searched: \n")		# Print out the filenames
 for filename in filenames:
 	report.write("- *"+filename+"*\n")
 report.write("\n")
 
 # Fine details
 report.write("##Findings\n")
+txt_report = open("output.txt", 'r')
+result = []
+section = []
+for line in txt_report:					# Structure the report as list of keyword hits starting with the keyword string
+	if "Keyword" in line:
+		if section != [] :
+			result.append(section)
+			section = []
+			section.append(line)
+		else:
+			section.append(line)
+	else:
+		section.append(line)			
+else:
+	result.append(section)
+txt_report.close()
 
-for filename in filenames:
-	report.write("### Hits in "+filename+"\n")
+for filename in filenames:				# For each pdf filename:
+	report.write("### Findings in " + filename + "\n")			# Subtitle for filename
 	for keyword in keywords:
-		for Tuple in summary_list:
-			if Tuple[0] == keyword and Tuple[1] == filename:
-				report.write("Keyword *"+keyword+"* found "+str(Tuple[2])+" times: \n")
-				findings = re.findall(r'$str(Tuple[2]) times:(.*?)Keyword', string_of_txt_report)
-				print findings
-
+		for hit in result:
+			if keyword in hit[0] and filename in hit[0]:
+				for line in hit:
+					report.write(line)
+	
 
 report.close()
-txt_report.close()
+
