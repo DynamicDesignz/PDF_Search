@@ -7,12 +7,13 @@ import os, sys, inspect
 cmd_markdown = os.path.realpath(os.path.abspath(os.path.join(os.path.split(inspect.getfile( inspect.currentframe() ))[0],"deps/markdown/")))
 sys.path.append(cmd_markdown)
 import markdown 		# Convert markdown to html
+import codecs			# Markdown require UTF-8 encoding of the .md file
 import time				# Print the date on the report
 import re				# Regular expressions
 from sets import Set	# We'll need the 'Set' object
 
-txt_report = open("output.txt", 'r')			# .txt version of the report from convert.py
-report = open("report.md", 'w')					# .md version of the report to be written
+txt_report = open("output.txt", 'r')						# .txt version of the report from convert.py
+report = open("report.md", 'w')								# .md version of the report to be written
 
 # Title and Top Matter
 report.write("#Search Report\n")							# Title
@@ -65,12 +66,19 @@ txt_report.close()
 
 for filename in filenames:				# For each pdf filename:
 	report.write("### Findings in " + filename + "\n")			# Subtitle for filename
-	for keyword in keywords:
-		for hit in result:
-			if keyword in hit[0] and filename in hit[0]:
-				for line in hit:
+	for keyword in keywords:									# For each search keyword
+		for hit in result:										# Search through the hits
+			if keyword in hit[0] and filename in hit[0]:		# if the hit is the right keyword and filename
+				for line in hit:								# print all the lines of the hit to the markdown report
 					report.write(line)
-	
 
 report.close()
+
+# Convert to html
+mdreport = open("report.md", 'r')
+markdown.markdownFromFile("report.md", "report.html")
+mdreport.close()
+
+
+
 
