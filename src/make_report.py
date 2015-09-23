@@ -70,7 +70,10 @@ for filename in filenames:				# For each pdf filename:
 		for hit in result:										# Search through the hits
 			if keyword in hit[0] and filename in hit[0]:		# if the hit is the right keyword and filename
 				for line in hit:								# print all the lines of the hit to the markdown report
-					report.write(line)
+					if line == hit[0]:
+						report.write(line)
+					else:
+						report.write(">"+line)
 
 report.close()
 
